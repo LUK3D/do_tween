@@ -100,7 +100,7 @@ class Do {
     return this;
   }
 
-  Do start([time]) {
+  Do tween([time]) {
     Do.setup();
     Do.add(this);
 
@@ -175,7 +175,7 @@ class Do {
       }
 
       if (_chainedTween != null) {
-        _chainedTween?.start();
+        _chainedTween?.tween();
       }
 
       return false;
