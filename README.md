@@ -36,9 +36,9 @@ import 'package:dotween/do_tween.dart';
 
 #### use DoTween
 ```
-DoTween({"x": 0, "y": 0, "alpha": 0, "custom_prop_abc": 123})
+Do({"x": 0, "y": 0, "alpha": 0, "custom_prop_abc": 123})
     .to({"x": 100, "y": 500, "alpha": 1, "custom_prop_abc": 321}, 2000)
-    .easing(DoTween.ease.elastic.easeOut)
+    .easing(Do.ease.elastic.easeOut)
     .onUpdate((obj) {
         setState(() {
             _x = obj["x"];
@@ -50,22 +50,22 @@ DoTween({"x": 0, "y": 0, "alpha": 0, "custom_prop_abc": 123})
     .onComplete((obj){
         /// 
     })
-    .start();
+    .tween();
 ```
 
 ```
-var tween1 = new DoTween(sprite)
+var tween1 = Do(sprite)
 	.to({x: 700, y: 200, rotation: 359}, 2000)
 	.delay(1000)
 	.easing(Ease.back.easeOut)
 	.onUpdate(update);
 
-var tween2 = new DoTween(sprite)
+var tween2 = Do(sprite)
 	.to({x: 10, y: 20, rotation: 30}, 2000)
 	.onUpdate(update);
 
 tween1.chain(tween2);
-tween1.start();
+tween1.tween();
 ```
 
 ## Thanks
