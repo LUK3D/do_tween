@@ -1,16 +1,16 @@
 import './miticker.dart';
 import './ease.dart';
 
-List<DoTween> _tweens = [];
+List<Do> _tweens = [];
 
-class DoTween {
+class Do {
   static EaseInstanceClass ease = EaseInstanceClass();
   ///////////////////////////////////////////////////////////////////////////
   ///
-  /// DoTween static methods
+  /// Do static methods
   ///
   ///////////////////////////////////////////////////////////////////////////
-  static List<DoTween> getAll() {
+  static List<Do> getAll() {
     return _tweens;
   }
 
@@ -18,11 +18,11 @@ class DoTween {
     _tweens = [];
   }
 
-  static void add(DoTween tween) {
+  static void add(Do tween) {
     _tweens.add(tween);
   }
 
-  static void remove(DoTween tween) {
+  static void remove(Do tween) {
     var i = _tweens.indexOf(tween);
 
     if (i != -1) {
@@ -37,7 +37,7 @@ class DoTween {
 
   static void setup() {
     if (_enableManualUpdate) return;
-    Miticker.init(DoTween._tickerHandler);
+    Miticker.init(Do._tickerHandler);
     Miticker.start();
   }
 
@@ -64,12 +64,12 @@ class DoTween {
   }
 
   static void _tickerHandler(Duration duration) {
-    DoTween.update();
+    Do.update();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   ///
-  /// DoTween class
+  /// Do class
   ///
   ///////////////////////////////////////////////////////////////////////////
   Map<String, dynamic> _object = {};
@@ -80,12 +80,12 @@ class DoTween {
   int _delayTime = 0;
   int _startTime = 0;
 
-  DoTween? _chainedTween;
+  Do? _chainedTween;
   Function? _easingFunction;
   Function? _onUpdateCallback;
   Function? _onCompleteCallback;
 
-  DoTween(Map<String, dynamic> object) {
+  Do(Map<String, dynamic> object) {
     _object = object;
     _valuesStart = {};
     _valuesEnd = {};
@@ -94,15 +94,15 @@ class DoTween {
     _easingFunction = Ease.linear.none;
   }
 
-  DoTween to(Map<String, dynamic> properties, [int duration = 1000]) {
+  Do to(Map<String, dynamic> properties, [int duration = 1000]) {
     _duration = duration;
     _valuesEnd = properties;
     return this;
   }
 
-  DoTween start([time]) {
-    DoTween.setup();
-    DoTween.add(this);
+  Do start([time]) {
+    Do.setup();
+    Do.add(this);
 
     _startTime = time ?? DateTime.now().millisecondsSinceEpoch;
     _startTime += _delayTime;
@@ -118,32 +118,32 @@ class DoTween {
     return this;
   }
 
-  DoTween stop() {
-    DoTween.remove(this);
+  Do stop() {
+    Do.remove(this);
     return this;
   }
 
-  DoTween delay(int amount) {
+  Do delay(int amount) {
     _delayTime = amount;
     return this;
   }
 
-  DoTween easing(easing) {
+  Do easing(easing) {
     _easingFunction = easing;
     return this;
   }
 
-  DoTween chain(DoTween chainedTween) {
+  Do chain(Do chainedTween) {
     _chainedTween = chainedTween;
     return this;
   }
 
-  DoTween onUpdate(Function onUpdateCallback) {
+  Do onUpdate(Function onUpdateCallback) {
     _onUpdateCallback = onUpdateCallback;
     return this;
   }
 
-  DoTween onComplete(Function onCompleteCallback) {
+  Do onComplete(Function onCompleteCallback) {
     _onCompleteCallback = onCompleteCallback;
     return this;
   }
