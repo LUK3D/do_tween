@@ -52,3 +52,10 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+repository: https://github.com/LUK3D/do_tween
+
+topics:
+  - animation
+  - tween
+  - transition
+  - animate
